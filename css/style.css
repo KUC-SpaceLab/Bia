@@ -1,0 +1,28 @@
+.wrapper {
+		border: 2px solid red;
+		min-height: 400px;
+		padding: 10px;
+}
+				
+#msg_area {
+		border: 2px solid blue;
+		margin: 10px;
+		padding: 15px;
+		min-height: 350px;
+}
+
+#txt_area {
+		border: 2px solid green;
+		margin: 10px;
+		padding: 15px;			 
+}
+
+#msg-input {
+		width: 90%;
+									 
+}
+
+#msg-but {
+		width: 5%;
+		float: right;
+}
