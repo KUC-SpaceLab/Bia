@@ -1,17 +1,35 @@
 <?php
-$db = new mysqli("localhost", "bia", "root", "");
+    
+	//Connecting to Database
+    require "dbconnect.php";
+	
+	//Function to filter Input
+    function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        
+		return $data;
+    }
+	
+	$username = test_input($_GET['username']);
+	$message = test_input($_GET['message']);
+	$school = test_input($_GET['school']);
 
-if ($db->connect_error) {
-	die("Sorry, there was a problem connecting to our database.");
-}
 
-$username = stripslashes(htmlspecialchars($_GET['username']));
-$message = stripslashes(htmlspecialchars($_GET['message']));
+	if ($message == "" || $username == "") {
+		die();
+	}
 
-if ($message == "" || $username == "") {
-	die();
-}
 
-$result = $db->prepare("INSERT INTO messages VALUES('',?,?)");
-$result->bind_param("ss", $username, $message);
-$result->execute();
+    // Add message to the database
+    $sql = "INSERT INTO messages ( username, school, message)
+            VALUES (:username, :school, :message)";
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindParam(":username", $username);
+    $stmt->bindParam(":message", $message);
+	$stmt->bindParam(":school", $school);
+
+
+    $result = $stmt->execute();

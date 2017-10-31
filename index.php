@@ -13,15 +13,15 @@
 			 <link rel="stylesheet" type="text/css" href="css/style.css">					 
 		</head>
 
-		<body>
+		<body onload="checkcookie(); update();">
 			<div id="whitebg"></div>
 			
 			<div id="loginbox">
 				<h1>Enter Your Fullname:</h1>
 				<p><input type="text" name="name" id="name" placeholder="Enter Your Fullname" class="msginput"></p>
 				<br>
-				<h1>Enter Your School:</h1>
-				<p><input type="text" name="school" id="school" placeholder="Enter Your School" class="msginput"></p>
+				<h1>Enter Name of Your School / Organization:</h1>
+				<p><input type="text" name="school" id="school" placeholder="Enter Name of Your School / Organization" class="msginput"></p>
 				
 				<p class="buttonp">
 					<button onclick="login()">Go</button>
@@ -103,9 +103,9 @@
 									item = response[i].split("\\")
 									if (item[1] != undefined) {
 										if (item[0] == username) {
-											output += "<div class=\"msgc\" style=\"margin-bottom: 30px;\"> <div class=\"msg msgfrom\">" + item[1] + "</div> <div class=\"msgarr msgarrfrom\"></div> <div class=\"msgsentby msgsentbyfrom\">Sent by " + item[0] + "</div> </div>";
+											output += "<div class=\"msgc\" style=\"margin-bottom: 30px;\"> <div class=\"msg msgfrom\">" + item[2] + "</div> <div class=\"msgarr msgarrfrom\"></div> <div class=\"msgsentby msgsentbyfrom\">Sent by " + item[0] + " (" +item[1]+ ")</div> </div>";
 										} else {
-											output += "<div class=\"msgc\"> <div class=\"msg\">" + item[1] + "</div> <div class=\"msgarr\"></div> <div class=\"msgsentby\">Sent by " + item[0] + "</div> </div>";
+											output += "<div class=\"msgc\"> <div class=\"msg\">" + item[2] + "</div> <div class=\"msgarr\"></div> <div class=\"msgsentby\">Sent by " + item[0] +" (" +item[1]+ ")</div> </div>";
 										}
 									}
 								}
@@ -121,10 +121,11 @@
 				function sendmsg() {
 					var message = msginput.value;
 					if (message != "") {
-						// alert(msgarea.innerHTML)
-						// alert(getcookie("messengerUname"))
+
 						var username = getcookie("messengerUname");
+						var school = getcookie("school");
 						var xmlhttp=new XMLHttpRequest();
+						
 						xmlhttp.onreadystatechange=function() {
 							if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 								message = escapehtml(message)
@@ -132,12 +133,12 @@
 								msginput.value = "";
 							}
 						}
-						  xmlhttp.open("GET","update-messages.php?username=" + username + "&message=" + message,true);
+						  xmlhttp.open("GET","update-messages.php?username=" + username + "&message=" + message + "&school=" + school,true);
 						  xmlhttp.send();
 					}
 				}
 				
-				setInterval(function(){ update() }, 2500);
+				setInterval(function(){ update() }, 3000);
 		    </script>
 		</body>
 

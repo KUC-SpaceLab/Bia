@@ -1,18 +1,30 @@
 <?php
-$db = new mysqli("localhost", "msg", "", "");
 
-if ($db->connect_error) {
-	die("Sorry, there was a problem connecting to our database.");
-}
+    //Connecting to Database
+    require "dbconnect.php";
 
-$username = stripslashes(htmlspecialchars($_GET['username']));
-$result = $db->prepare("SELECT * FROM messages");
-$result->execute();
-$result = $result->get_result();
+    //Function to filter Input
+    function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        
+		return $data;
+    }
+	
+	$username = test_input($_GET['username']);
+    
+	$sql = "SELECT * FROM messages";
+	
+	foreach ($conn->query($sql) as $row) {
+        echo $row['username'];
+		echo "\\";
+		echo $row['school'];
+		echo "\\";
+        echo  $row['message'];
+		echo "\n";
 
-while ($r = $result->fetch_row()) {
-	echo $r[1];
-	echo "\\";
-	echo $r[2];
-	echo "\n";
-}
+    }
+	
+	//print_r($result);
+
