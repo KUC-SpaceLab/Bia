@@ -1,5 +1,13 @@
-<?php
+<?
+
+/*
+This is the database Connection File
+You may update if you have different connection details
+*/
+
+//Database Username
 $username = "root";
+//Database Password
 $password ="";
 
 try {

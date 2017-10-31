@@ -12,12 +12,14 @@
 		return $data;
     }
 	
+	//Get and filter all user inputs
 	$username = test_input($_GET['username']);
 	$message = test_input($_GET['message']);
 	$school = test_input($_GET['school']);
 
-
-	if ($message == "" || $username == "") {
+	
+	//If any of the above inputs are empty kill script
+	if ($message == "" || $username == ""|| $school == "") {
 		die();
 	}
 
@@ -26,10 +28,7 @@
     $sql = "INSERT INTO messages ( username, school, message)
             VALUES (:username, :school, :message)";
     $stmt = $conn->prepare($sql);
-
     $stmt->bindParam(":username", $username);
     $stmt->bindParam(":message", $message);
 	$stmt->bindParam(":school", $school);
-
-
     $result = $stmt->execute();

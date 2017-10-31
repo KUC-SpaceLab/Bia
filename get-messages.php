@@ -12,8 +12,10 @@
 		return $data;
     }
 	
+	//Get and filter user's username
 	$username = test_input($_GET['username']);
     
+	//Query to select all Messages from the table
 	$sql = "SELECT * FROM messages";
 	
 	foreach ($conn->query($sql) as $row) {
@@ -26,5 +28,5 @@
 
     }
 	
-	//print_r($result);
+
 
