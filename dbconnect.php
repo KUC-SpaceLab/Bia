@@ -1,13 +1,7 @@
-<?
+<?php
 
-/*
-This is the database Connection File
-You may update if you have different connection details
-*/
-
-//Database Username
+//DB Connection Details
 $username = "root";
-//Database Password
 $password ="";
 
 try {
@@ -16,7 +10,6 @@ try {
 
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //echo "Connected successfully";
     }
 
 catch(PDOException $e)
@@ -24,5 +17,4 @@ catch(PDOException $e)
     echo "Connection failed: " . $e->getMessage();
     }
 
-?>
 
