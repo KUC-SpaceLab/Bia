@@ -81,7 +81,7 @@ function update() {
 						}
 								
 						msgarea.innerHTML = output;
-						msgarea.scrollTop = msgarea.scrollHeight;
+						//msgarea.scrollTop = msgarea.scrollHeight;
 				}
 		}
 		

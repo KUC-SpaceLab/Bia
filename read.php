@@ -48,17 +48,13 @@
 				</div>
 				<div class="msg-area" id="msg-area"></div>
 				
-				<div class="bottom">
-					<input type="text" name="msginput" class="msginput" id="msginput" onkeydown="if (event.keyCode == 13) sendmsg()" 
-					placeholder="Enter your question here ... (Press enter to send message)">
-				</div>
 			</div>
 			<!-- End of Message Container -->
 			
 		
 
 			 <!-- Javascript --->
-			<script src="assests/js/functions.js"></script>
+			<script src="assests/js/readfunctions.js"></script>
 					
 
 		</body>

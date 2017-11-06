@@ -12,10 +12,10 @@
 		return $data;
     }
 	
-	//Get and filter user's username
+	//Get and Filter Username Cookie
 	$username = test_input($_GET['username']);
     
-	//Query to select all Messages from the table
+	//Select All Messages from the database
 	$sql = "SELECT * FROM messages";
 	
 	foreach ($conn->query($sql) as $row) {
@@ -28,5 +28,4 @@
 
     }
 	
-
 
